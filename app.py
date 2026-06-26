@@ -10,6 +10,17 @@ from datetime import datetime, timedelta
 import streamlit as st
 import pandas as pd
 
+from datetime import datetime
+
+# TEMPORARY DEBUG - Remove after testing
+st.write("### Debug Info")
+try:
+    response = requests.get("https://sirens.in.ua/api/v3/alerts/", timeout=5)
+    st.write(f"API Status: {response.status_code}")
+    st.write(f"API Response Sample: {response.text[:200]}")
+except Exception as e:
+    st.write(f"API Error: {e}")
+
 from data_loader import load_alerts, get_available_oblasts
 from analytics import (
     filter_by_date_range,
